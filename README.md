@@ -300,3 +300,13 @@ http://www.runoob.com/scala/scala-install.html
 ## 22.10 转换嵌套的控制上下文
 ## 练习
 # 索引
+
+## SBT构建工具
+```
+sbt shell
+
+clean
+compile
+test
+package
+```
