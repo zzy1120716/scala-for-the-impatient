@@ -6,6 +6,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ch01-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ch01-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/ch02/ch02.iml" filepath="$PROJECT_DIR$/ch02/ch02.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ch02-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ch02-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ch03/ch03.iml" filepath="$PROJECT_DIR$/ch03/ch03.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ch03-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ch03-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/example-build.iml" filepath="$PROJECT_DIR$/.idea/modules/example-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/root.iml" filepath="$PROJECT_DIR$/.idea/modules/root.iml" />

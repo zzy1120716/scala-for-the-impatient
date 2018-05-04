@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="ch02-build" external.linked.project.path="$MODULE_DIR$/../../ch02/project" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" sbt.imports="SUB:DOLLAR2704d93507859d34fdcc.`ch01`, SUB:DOLLAR2704d93507859d34fdcc.`ch02`, SUB:DOLLAR2704d93507859d34fdcc.`ch03`, SUB:DOLLAR2704d93507859d34fdcc.`example`, SUB:DOLLAR2704d93507859d34fdcc.`root`, _root_.sbt.Keys._, _root_.sbt._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" sbt.resolvers="https://repo1.maven.org/maven2/|maven|public, file:/C:/Users/zzy/.sbt/preloaded|maven|local-preloaded, C:\Users\zzy\.ivy2\cache|ivy|Local cache" type="SBT_MODULE" version="4">
+<module external.linked.project.id="ch03-build" external.linked.project.path="$MODULE_DIR$/../../ch03/project" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" sbt.imports="SUB:DOLLAR2704d93507859d34fdcc.`ch01`, SUB:DOLLAR2704d93507859d34fdcc.`ch02`, SUB:DOLLAR2704d93507859d34fdcc.`ch03`, SUB:DOLLAR2704d93507859d34fdcc.`example`, SUB:DOLLAR2704d93507859d34fdcc.`root`, _root_.sbt.Keys._, _root_.sbt._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" sbt.resolvers="https://repo1.maven.org/maven2/|maven|public, file:/C:/Users/zzy/.sbt/preloaded|maven|local-preloaded, C:\Users\zzy\.ivy2\cache|ivy|Local cache" type="SBT_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <output url="file://$MODULE_DIR$/../../ch02/project/target/idea-classes" />
-    <output-test url="file://$MODULE_DIR$/../../ch02/project/target/idea-test-classes" />
+    <output url="file://$MODULE_DIR$/../../ch03/project/target/idea-classes" />
+    <output-test url="file://$MODULE_DIR$/../../ch03/project/target/idea-test-classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../ch02/project">
-      <sourceFolder url="file://$MODULE_DIR$/../../ch02/project" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/../../ch02/project/project/target" />
-      <excludeFolder url="file://$MODULE_DIR$/../../ch02/project/target" />
+    <content url="file://$MODULE_DIR$/../../ch03/project">
+      <sourceFolder url="file://$MODULE_DIR$/../../ch03/project" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ch03/project/project/target" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ch03/project/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -8,3 +8,8 @@ else if (x == 0) 0 else -1
 
 ## 2.4 输入和输出
 ##### InputAndOutput
+
+## 练习
+##### ExercisesTest
+4. Java版PrintTenTo0
+5. PrintNto0
