@@ -41,6 +41,6 @@ class MapTest extends FunSuite {
   }
 
   test("update map values") {
-    
+
   }
 }
