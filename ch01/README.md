@@ -1,5 +1,5 @@
 ## 练习
-1. 
+1. In the Scala REPL, type 3. followed by the Tab key. What methods can be applied?
 ```
 !=   ==             doubleValue   isInstanceOf    min              toChar          unary_-
 ##   >              ensuring      isNaN           ne               toDegrees       unary_~
@@ -15,7 +15,7 @@
 <=   compareTo      isInfinity    max             toByte           unary_+
 ```
 
-2.
+2. In the Scala REPL, compute the square root of 3, and then square that value. By how much does the result differ from 3? (Hint: The res variables are your friend.)
 ```
 scala> import math._
 import math._
@@ -27,7 +27,8 @@ scala> res1 * res1
 res2: Double = 2.9999999999999996
 ```
 
-3. res变量是var
+3. Are the res variables val or var?
+res变量是var
 ```
 scala> res2 + 1
 res3: Double = 3.9999999999999996

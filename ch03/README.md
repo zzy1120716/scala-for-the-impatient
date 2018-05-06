@@ -7,3 +7,5 @@
 ## 3.6 解读Scaladoc
 ## 3.7 多维数组
 ## 3.8 与Java的互操作
+## 练习
+1. RandomIntArray
