@@ -41,6 +41,11 @@ lazy val ch04 = (project in file("ch04"))
     commonSettings,
   )
 
+lazy val ch05 = (project in file("ch05"))
+  .settings(
+    commonSettings,
+  )
+
 lazy val example = (project in file("example"))
   .settings(
     commonSettings
@@ -51,5 +56,6 @@ lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   ch02,
   ch03,
   ch04,
+  ch05,
   example
 )

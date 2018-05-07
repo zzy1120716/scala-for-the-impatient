@@ -8,3 +8,4 @@
 ## 4.7 元组
 ## 4.8 拉链操作
 ## 练习
+7. PrintAllJavaPropsAsTable
