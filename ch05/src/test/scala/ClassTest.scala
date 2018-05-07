@@ -3,7 +3,7 @@ import java.util.Properties
 
 import org.scalatest.FunSuite
 
-import scala.reflect.io.File
+import scala.collection.mutable.ArrayBuffer
 
 class ClassTest extends FunSuite {
 
@@ -146,5 +146,155 @@ class ClassTest extends FunSuite {
 
   test("nested classes") {
 
+    class Network {
+
+      class Member(val name: String) {
+        val contacts = new ArrayBuffer[Member]
+      }
+
+      private val members = new ArrayBuffer[Member]
+
+      def getMembers = members
+
+      def join(name: String): Member = {
+        val m = new Member(name)
+        members += m
+        m
+      }
+    }
+
+    val chatter = new Network
+    val myFace = new Network
+
+    val fred = chatter.join("Fred")
+    val wilma = chatter.join("Wilma")
+    fred.contacts += wilma  // OK
+    val barney = myFace.join("Barney")  // has type myFace.Member
+    //fred.contacts += barney
+    // No—can’t add a myFace.Member to a buffer of chatter.Member elements
+
+    val namesChatter = new ArrayBuffer[String]
+    chatter.getMembers foreach { member =>
+      namesChatter.append(member.name)
+    }
+    assert(namesChatter.mkString(", ") === "Fred, Wilma")
+
+    val namesMyFace = new ArrayBuffer[String]
+    myFace.getMembers foreach { member =>
+      namesMyFace.append(member.name)
+    }
+    assert(namesMyFace.mkString(", ") === "Barney")
+
+    val namesContacts = new ArrayBuffer[String]
+    fred.contacts foreach { member =>
+      namesContacts.append(member.name)
+    }
+    assert(namesContacts.mkString(", ") === "Wilma")
+  }
+
+  test("companion object") {
+    object Network {
+      class Member(val name: String) {
+        val contacts = new ArrayBuffer[Member]
+      }
+    }
+
+    class Network {
+      private val members = new ArrayBuffer[Network.Member]
+
+      def getMembers = members
+
+      def join(name: String): Network.Member = {
+        val m = new Network.Member(name)
+        members += m
+        m
+      }
+    }
+
+    val chatter = new Network
+    val myFace = new Network
+
+    val fred = chatter.join("Fred")
+    val wilma = chatter.join("Wilma")
+    fred.contacts += wilma  // OK
+    val barney = myFace.join("Barney")  // has type myFace.Member
+    fred.contacts += barney
+
+    val namesChatter = new ArrayBuffer[String]
+    chatter.getMembers foreach { member =>
+      namesChatter.append(member.name)
+    }
+    assert(namesChatter.mkString(", ") === "Fred, Wilma")
+
+    val namesMyFace = new ArrayBuffer[String]
+    myFace.getMembers foreach { member =>
+      namesMyFace.append(member.name)
+    }
+    assert(namesMyFace.mkString(", ") === "Barney")
+
+    val namesContacts = new ArrayBuffer[String]
+    fred.contacts foreach { member =>
+      namesContacts.append(member.name)
+    }
+    assert(namesContacts.mkString(", ") === "Wilma, Barney")
+  }
+
+  test("type projection") {
+    class Network {
+      class Member(val name: String) {
+        val contacts = new ArrayBuffer[Network#Member]  // type projection
+      }
+
+      private val members = new ArrayBuffer[Member]
+
+      def getMembers = members
+
+      def join(name: String): Member = {
+        val m = new Member(name)
+        members += m
+        m
+      }
+    }
+
+    val chatter = new Network
+    val myFace = new Network
+
+    val fred = chatter.join("Fred")
+    val wilma = chatter.join("Wilma")
+    fred.contacts += wilma  // OK
+    val barney = myFace.join("Barney")  // has type myFace.Member
+    fred.contacts += barney
+
+    val namesChatter = new ArrayBuffer[String]
+    chatter.getMembers foreach { member =>
+      namesChatter.append(member.name)
+    }
+    assert(namesChatter.mkString(", ") === "Fred, Wilma")
+
+    val namesMyFace = new ArrayBuffer[String]
+    myFace.getMembers foreach { member =>
+      namesMyFace.append(member.name)
+    }
+    assert(namesMyFace.mkString(", ") === "Barney")
+
+    val namesContacts = new ArrayBuffer[String]
+    fred.contacts foreach { member =>
+      namesContacts.append(member.name)
+    }
+    assert(namesContacts.mkString(", ") === "Wilma, Barney")
+  }
+
+  test("enclosing class") {
+    class Network(val name: String) { outer =>
+      class Member(val name: String) {
+        val contacts = new ArrayBuffer[Member]
+
+        def description = name + " inside " + outer.name
+      }
+    }
+
+    val chatter = new Network("Chatter")
+    val fred = new chatter.Member("Fred")
+    assert(fred.description === "Fred inside Chatter")
   }
 }
