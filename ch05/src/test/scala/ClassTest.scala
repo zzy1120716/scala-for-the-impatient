@@ -11,7 +11,7 @@ class ClassTest extends FunSuite {
     class Counter {
       private var value = 0 // you must initialize the field
       def increment() { value += 1 } // methods are public by default
-      def current = value
+      def current: Int = value
     }
 
     val myCounter = new Counter
@@ -33,7 +33,7 @@ class ClassTest extends FunSuite {
     class Person {
       private var privateAge = 0
 
-      def age = privateAge
+      def age: Int = privateAge
       def age_=(newValue: Int): Unit = {
         if (newValue > privateAge) privateAge = newValue  // can’t get younger
       }
@@ -53,7 +53,7 @@ class ClassTest extends FunSuite {
     class Counter {
       private var value = 0
       def increment() { value += 1 }
-      def current = value // no () in declaration
+      def current: Int = value // no () in declaration
     }
 
     val myCounter = new Counter
@@ -64,7 +64,7 @@ class ClassTest extends FunSuite {
     class Counter {
       private var value = 0
       def increment() { value += 1 }
-      def isLess(other: Counter) = value < other.value
+      def isLess(other: Counter): Boolean = value < other.value
       // can access private field of other object
     }
     val myCounter = new Counter
@@ -134,10 +134,11 @@ class ClassTest extends FunSuite {
     val p = new Person("Fred", 42)
     assert(p.description === "Fred is 42 years old")
 
+    // regular method parameters without val or var
     class Person2(name: String, age: Int) {
       // if a parameter without val or var is used inside
       // at least one method, it becomes a field.
-      def description = name + " is " + age + " years old"
+      def description: String = name + " is " + age + " years old"
     }
 
     // to make the primary constructor private
@@ -154,7 +155,7 @@ class ClassTest extends FunSuite {
 
       private val members = new ArrayBuffer[Member]
 
-      def getMembers = members
+      def curMembers: ArrayBuffer[Network.this.Member] = members
 
       def join(name: String): Member = {
         val m = new Member(name)
@@ -174,13 +175,13 @@ class ClassTest extends FunSuite {
     // No—can’t add a myFace.Member to a buffer of chatter.Member elements
 
     val namesChatter = new ArrayBuffer[String]
-    chatter.getMembers foreach { member =>
+    chatter.curMembers foreach { member =>
       namesChatter.append(member.name)
     }
     assert(namesChatter.mkString(", ") === "Fred, Wilma")
 
     val namesMyFace = new ArrayBuffer[String]
-    myFace.getMembers foreach { member =>
+    myFace.curMembers foreach { member =>
       namesMyFace.append(member.name)
     }
     assert(namesMyFace.mkString(", ") === "Barney")
@@ -202,7 +203,7 @@ class ClassTest extends FunSuite {
     class Network {
       private val members = new ArrayBuffer[Network.Member]
 
-      def getMembers = members
+      def curMembers: ArrayBuffer[Network.Member] = members
 
       def join(name: String): Network.Member = {
         val m = new Network.Member(name)
@@ -221,13 +222,13 @@ class ClassTest extends FunSuite {
     fred.contacts += barney
 
     val namesChatter = new ArrayBuffer[String]
-    chatter.getMembers foreach { member =>
+    chatter.curMembers foreach { member =>
       namesChatter.append(member.name)
     }
     assert(namesChatter.mkString(", ") === "Fred, Wilma")
 
     val namesMyFace = new ArrayBuffer[String]
-    myFace.getMembers foreach { member =>
+    myFace.curMembers foreach { member =>
       namesMyFace.append(member.name)
     }
     assert(namesMyFace.mkString(", ") === "Barney")
@@ -247,7 +248,7 @@ class ClassTest extends FunSuite {
 
       private val members = new ArrayBuffer[Member]
 
-      def getMembers = members
+      def curMembers: ArrayBuffer[Network.this.Member] = members
 
       def join(name: String): Member = {
         val m = new Member(name)
@@ -266,13 +267,13 @@ class ClassTest extends FunSuite {
     fred.contacts += barney
 
     val namesChatter = new ArrayBuffer[String]
-    chatter.getMembers foreach { member =>
+    chatter.curMembers foreach { member =>
       namesChatter.append(member.name)
     }
     assert(namesChatter.mkString(", ") === "Fred, Wilma")
 
     val namesMyFace = new ArrayBuffer[String]
-    myFace.getMembers foreach { member =>
+    myFace.curMembers foreach { member =>
       namesMyFace.append(member.name)
     }
     assert(namesMyFace.mkString(", ") === "Barney")
@@ -289,7 +290,7 @@ class ClassTest extends FunSuite {
       class Member(val name: String) {
         val contacts = new ArrayBuffer[Member]
 
-        def description = name + " inside " + outer.name
+        def description: String = name + " inside " + outer.name
       }
     }
 

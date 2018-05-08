@@ -12,6 +12,10 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ch04-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ch04-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/ch05/ch05.iml" filepath="$PROJECT_DIR$/ch05/ch05.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ch05-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ch05-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ch06/ch06.iml" filepath="$PROJECT_DIR$/ch06/ch06.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ch06-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ch06-build.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ch07/ch07.iml" filepath="$PROJECT_DIR$/ch07/ch07.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ch07-build.iml" filepath="$PROJECT_DIR$/.idea/modules/ch07-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/example/example.iml" filepath="$PROJECT_DIR$/example/example.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/example-build.iml" filepath="$PROJECT_DIR$/.idea/modules/example-build.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/root.iml" filepath="$PROJECT_DIR$/.idea/modules/root.iml" />
