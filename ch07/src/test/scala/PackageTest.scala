@@ -23,4 +23,37 @@ class PackageTest extends FunSuite {
     }
     assert(handler(new ActionEvent(new Object, 1, "")).getClass.getSimpleName === "ActionEvent")
   }
+
+  test("renaming and hiding members") {
+    import java.awt.{Color, Font}
+    assert(Color.BLACK.toString === "java.awt.Color[r=0,g=0,b=0]")
+    assert(Font.BOLD.toString === "1")
+
+    // rename
+    import java.util.{HashMap => JavaHashMap}
+    import scala.collection.mutable._
+
+    val m1 = new JavaHashMap[Int, Int]
+    val m2 = new HashMap[Int, Int]
+    assert(m1.getClass.getName === "java.util.HashMap")
+    assert(m2.getClass.getName === "scala.collection.mutable.HashMap")
+
+    // hide
+    import java.util.{HashMap => _, _}
+    import scala.collection.mutable._
+    val m = new HashMap[Int, Int]
+    assert(m.getClass.getName === "scala.collection.mutable.HashMap")
+  }
+
+  test("implicit import") {
+    // scala program implicitly starts with
+    import java.lang._
+    import scala._
+    //import Predef._
+
+    import collection.mutable.HashMap
+    //import scala.collection.mutable.HashMap
+
+    assert(new HashMap[Int, Int].getClass.getName === "scala.collection.mutable.HashMap")
+  }
 }
