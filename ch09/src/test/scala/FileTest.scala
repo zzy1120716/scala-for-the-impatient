@@ -1,3 +1,5 @@
+import java.io.{File, FileInputStream, PrintWriter}
+
 import org.scalatest.FunSuite
 
 import scala.collection.mutable
@@ -77,5 +79,24 @@ class FileTest extends FunSuite {
     source1.close()
     source2.close()
     source3.close()
+  }
+
+  test("reading binary files") {
+    val file = new File("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/myfile.txt")
+    val in = new FileInputStream(file)
+    val bytes = new Array[Byte](file.length.toInt)
+    in.read(bytes)
+    in.close()
+  }
+
+  test("writing text file") {
+    val out = new PrintWriter("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/numbers.txt")
+    for (i <- 1 to 100) out.println(i)
+
+    val quantity = 1000000
+    val price = 199.99
+    out.printf("%6d %10.2f", quantity.asInstanceOf[AnyRef], price.asInstanceOf[AnyRef]) // ugh
+    out.printf("%6d %10.2f".format(quantity, price)) // better solution
+    out.close()
   }
 }
