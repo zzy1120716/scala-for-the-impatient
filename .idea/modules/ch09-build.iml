@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id="example-build" external.linked.project.path="$MODULE_DIR$/../../example/project" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" sbt.imports="SUB:DOLLARf9ee47af86df6ee3c3b0.`ch01`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch02`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch03`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch04`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch05`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch06`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch07`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch08`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch09`, SUB:DOLLARf9ee47af86df6ee3c3b0.`example`, SUB:DOLLARf9ee47af86df6ee3c3b0.`root`, _root_.sbt.Keys._, _root_.sbt._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" sbt.resolvers="https://repo1.maven.org/maven2/|maven|public, file:/C:/Users/zzy/.sbt/preloaded|maven|local-preloaded, C:\Users\zzy\.ivy2\cache|ivy|Local cache" type="SBT_MODULE" version="4">
+<module external.linked.project.id="ch09-build" external.linked.project.path="$MODULE_DIR$/../../ch09/project" external.root.project.path="$MODULE_DIR$/../.." external.system.id="SBT" sbt.imports="SUB:DOLLARf9ee47af86df6ee3c3b0.`ch01`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch02`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch03`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch04`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch05`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch06`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch07`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch08`, SUB:DOLLARf9ee47af86df6ee3c3b0.`ch09`, SUB:DOLLARf9ee47af86df6ee3c3b0.`example`, SUB:DOLLARf9ee47af86df6ee3c3b0.`root`, _root_.sbt.Keys._, _root_.sbt._, _root_.sbt.plugins.IvyPlugin, _root_.sbt.plugins.JvmPlugin, _root_.sbt.plugins.CorePlugin, _root_.sbt.plugins.JUnitXmlReportPlugin, _root_.sbt.plugins.Giter8TemplatePlugin, _root_.scala.xml.{TopScope=&gt;SUB:DOLLARscope}" sbt.resolvers="https://repo1.maven.org/maven2/|maven|public, file:/C:/Users/zzy/.sbt/preloaded|maven|local-preloaded, C:\Users\zzy\.ivy2\cache|ivy|Local cache" type="SBT_MODULE" version="4">
   <component name="NewModuleRootManager">
-    <output url="file://$MODULE_DIR$/../../example/project/target/idea-classes" />
-    <output-test url="file://$MODULE_DIR$/../../example/project/target/idea-test-classes" />
+    <output url="file://$MODULE_DIR$/../../ch09/project/target/idea-classes" />
+    <output-test url="file://$MODULE_DIR$/../../ch09/project/target/idea-test-classes" />
     <exclude-output />
-    <content url="file://$MODULE_DIR$/../../example/project">
-      <sourceFolder url="file://$MODULE_DIR$/../../example/project" isTestSource="false" />
-      <excludeFolder url="file://$MODULE_DIR$/../../example/project/project/target" />
-      <excludeFolder url="file://$MODULE_DIR$/../../example/project/target" />
+    <content url="file://$MODULE_DIR$/../../ch09/project">
+      <sourceFolder url="file://$MODULE_DIR$/../../ch09/project" isTestSource="false" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ch09/project/project/target" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ch09/project/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

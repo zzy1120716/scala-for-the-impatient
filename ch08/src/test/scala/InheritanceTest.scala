@@ -1,7 +1,5 @@
 import org.scalatest.FunSuite
 
-import scala.collection.mutable
-
 class InheritanceTest extends FunSuite {
 
   test("extending a class") {
