@@ -2,7 +2,6 @@ import java.io.{File, FileInputStream, PrintWriter}
 
 import org.scalatest.FunSuite
 
-import scala.collection.mutable
 import scala.io.Source
 import scala.collection.mutable.ArrayBuffer
 
@@ -82,7 +81,8 @@ class FileTest extends FunSuite {
   }
 
   test("reading binary files") {
-    val file = new File("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/myfile.txt")
+    //val file = new File("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/myfile.txt")
+    val file = new File("E:\\IdeaProjects\\scala-for-the-impatient\\ch09\\src\\test\\resources\\myfile.txt")
     val in = new FileInputStream(file)
     val bytes = new Array[Byte](file.length.toInt)
     in.read(bytes)
@@ -90,7 +90,8 @@ class FileTest extends FunSuite {
   }
 
   test("writing text file") {
-    val out = new PrintWriter("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/numbers.txt")
+    //val out = new PrintWriter("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/numbers.txt")
+    val out = new PrintWriter("E:\\IdeaProjects\\scala-for-the-impatient\\ch09\\src\\test\\resources\\numbers.txt")
     for (i <- 1 to 100) out.println(i)
 
     val quantity = 1000000
@@ -99,4 +100,57 @@ class FileTest extends FunSuite {
     out.printf("%6d %10.2f".format(quantity, price)) // better solution
     out.close()
   }
+
+  test("visiting directories") {
+    def subdirs(dir: File): Iterator[File] = {
+      val children =  dir.listFiles.filter(_.isDirectory)
+      children.toIterator ++ children.toIterator.flatMap(subdirs _)
+    }
+    //val dirs = subdirs(new File("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources"))
+    val dirs = subdirs(new File("E:\\IdeaProjects\\scala-for-the-impatient\\ch09\\src\\test\\resources"))
+    var result = List[String]()
+    for (d <- dirs) result = result ::: List(d.getName)
+    assert(result.mkString(", ") === "a, b, c")
+
+    // Java 7+ feature
+    import java.nio.file._
+    implicit def makeFileVisitor(f: Path => Unit): SimpleFileVisitor[Path] = new SimpleFileVisitor[Path] {
+      override def visitFile(p: Path, attrs: attribute.BasicFileAttributes): FileVisitResult = {
+        f(p)
+        FileVisitResult.CONTINUE
+      }
+    }
+    //val dir = new File("/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/b")
+    val dir = new File("E:\\IdeaProjects\\scala-for-the-impatient\\ch09\\src\\test\\resources\\b")
+    Files.walkFileTree(dir.toPath, (f: Path) => println(f.getFileName))
+  }
+
+  test("serialization") {
+    @SerialVersionUID(42L) class Person(val name: String) extends Serializable {
+      private val friends = new ArrayBuffer[Person] // OK —— ArrayBuffer is serializable
+      override def toString: String = s"Person[name=$name]"
+    }
+    val fred = new Person("Fred")
+    import java.io._
+    val out = new ObjectOutputStream(new FileOutputStream("/tmp/test.obj"))
+    out.writeObject(fred)
+    out.close()
+    val in = new ObjectInputStream(new FileInputStream("/tmp/test.obj"))
+    val savedFred = in.readObject().asInstanceOf[Person]
+    in.close()
+    assert(fred.toString === "Person[name=Fred]")
+    assert(savedFred.toString === "Person[name=Fred]")
+  }
+
+  /*test("process control") {
+    import sys.process._
+    import java.io.File
+    val cmd = "ls -al ."
+    //val dirName = "/Users/zzy/Docs/scala-for-the-impatient/ch09/src/test/resources/b"
+    //val dirName = "E:\\IdeaProjects\\scala-for-the-impatient\\ch09\\src\\test\\resources\\b"
+    val dirName = "/"
+    val p = Process(cmd, new File(dirName), ("LANG", "en_US"))
+    val result = ("echo 42" #| p).!!
+    println(result)
+  }*/
 }
