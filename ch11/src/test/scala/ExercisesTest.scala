@@ -216,6 +216,127 @@ class ExercisesTest extends FunSuite {
     * value. Supply apply and update operators to get and set an individual bit.
     */
   test("7") {
-    
+    class BitSequence(private var value: Long = 0) {
+      implicit def bool2int(b: Boolean): Int = if (b) 1 else 0
+      def update(bit: Int, state: Int): Unit = value |= (state & 1L) << bit % 64
+      def apply(bit: Int): Int = if ((value & 1L << bit % 64) > 0) 1 else 0
+      override def toString: String = f"${value.toBinaryString.replace(" ", "0")}%64s"
+    }
+
+    val x = new BitSequence()
+    assert(x.toString === "%64s".format("0"))
+    x(5) = 1
+    assert(x.toString === "%64s".format("100000"))
+    x(63) = 1
+    x(64) = 1
+    assert(x(5) === 1)
+    assert(x.toString === "1000000000000000000000000000000000000000000000000000000000100001")
+  }
+
+  /**
+    * Provide a class Matrix. Choose whether you want to implement 2 × 2 matrices,
+    * square matrices of any size, or m × n matrices. Supply operations + and *. The
+    * latter should also work with scalars, for example, mat * 2. A single element
+    * should be accessible as mat(row, col).
+    */
+  test("8") {
+
+    class Matrix(val m: Int, val n: Int) {
+
+      def this(value: Array[Array[Double]]) {
+        this(value.length, value(0).length)
+        _value = value
+      }
+
+      private var _value = Array.ofDim[Double](m, n)
+      def value: Array[Array[Double]] = _value
+      def apply(x: Int, y: Int): Double = value(x)(y)
+      def update(x: Int, y: Int, v: Double): Unit = value(x)(y) = v
+
+      def +(other: Matrix): Matrix = {
+        require (m == other.m)
+        require (n == other.n)
+        val res = new Matrix(m, n)
+        for (i <- 0 until m; j <- 0 until n) res(i, j) = this.value(i)(j) + other.value(i)(j)
+        res
+      }
+
+      def -(other: Matrix): Matrix = this + other * -1
+
+      def *(factor: Double): Matrix = {
+        val res = new Matrix(m, n)
+        for (i <- 0 until m; j <- 0 until n) {
+          res(i, j) = this.value(i)(j) * factor
+        }
+        res
+      }
+
+      def *(other: Matrix): Matrix = {
+        val s = other.n
+        require (n == other.m)
+        val res = new Matrix(m, s)
+        for (i <- 0 until m; j <- 0 until s) {
+          res(i, j) = 0
+          for (k <- 0 until n) {
+            res(i, j) += this.value(i)(k) * other.value(k)(j)
+          }
+        }
+        res
+      }
+
+      override def toString: String = value.map(_.mkString(" ")).mkString("\n")
+    }
+
+    val x = new Matrix(Array(Array(5, 2, 4), Array(3, 8, 2), Array(6, 0, 4), Array(0, 1, 6)))
+    val y = new Matrix(Array(Array(2, 4), Array(1, 3), Array(3, 2)))
+    val z = new Matrix(Array(Array(1, 5), Array(7, 4), Array(9, 0)))
+
+    assert((y * 2).toString === "4.0 8.0\n2.0 6.0\n6.0 4.0")
+    assert((x * y).toString === "24.0 34.0\n20.0 40.0\n24.0 32.0\n19.0 15.0")
+    assert((y + z).toString === "3.0 9.0\n8.0 7.0\n12.0 2.0")
+    assert((y - z).toString === "1.0 -1.0\n-6.0 -1.0\n-6.0 2.0")
+  }
+
+  /**
+    * Define an object PathComponents with an unapply operation class that extracts
+    * the directory path and file name from an java.nio.file.Path. For example, the
+    * file /home/cay/readme.txt has directory path /home/cay and file name readme.txt.
+    */
+  test("9") {
+    object PathComponents {
+      def unapply(filePath: String): Option[(String, String, String)] = {
+        val posFile = filePath.lastIndexOf("/")
+        val posExt = filePath.indexOf(".")
+        if (posFile == -1 || posExt == -1) None
+        else Some((filePath.substring(0, posFile), filePath.substring(posFile + 1, posExt), filePath.substring(posExt + 1)))
+      }
+    }
+    val PathComponents(path, fileName, extension) = "/home/cay/readme.txt"
+    assert(path === "/home/cay")
+    assert(fileName === "readme")
+    assert(extension === "txt")
+  }
+
+  /**
+    * Modify the PathComponents object of the preceding exercise to instead define an
+    * unapplySeq operation that extracts all path segments. For example, for the file
+    * /home/cay/readme.txt, you should produce a sequence of three segments: home,
+    * cay, and readme.txt.
+    */
+  test("10") {
+    object PathComponents {
+      def unapplySeq(filePath: String): Option[Seq[String]] = {
+        if (filePath.trim == "") None else Some(filePath.trim.split("/"))
+      }
+    }
+
+    val filePath = "/home/cay/readme.txt"
+    val paths = new ArrayBuffer[String]
+    filePath match {
+      case PathComponents("", root, user, fileName) => paths.append(root); paths.append(user); paths.append(fileName)
+      case _ => throw new MatchError
+    }
+
+    assert(paths.mkString(" ") === "home cay readme.txt")
   }
 }
