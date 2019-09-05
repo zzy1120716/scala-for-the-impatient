@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ScalaCompilerConfiguration">
-    <profile name="sbt 1" modules="scala-for-the-impatient,ch03,ch12,ch04,example,ch01,root,ch08,ch11,ch05,ch07,ch09,ch06,ch02,ch13,ch10,ch14" />
-  </component>
-</project>
