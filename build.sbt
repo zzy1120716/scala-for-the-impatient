@@ -101,6 +101,11 @@ lazy val itcast = (project in file("itcast"))
     commonSettings
   )
 
+lazy val fpinscala = (project in file("fpinscala"))
+  .settings(
+    commonSettings
+  )
+
 lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   ch01,
   ch02,
@@ -117,5 +122,6 @@ lazy val aggregatedProjects: Seq[ProjectReference] = Seq(
   ch13,
   ch14,
   example,
-  itcast
+  itcast,
+  fpinscala
 )
